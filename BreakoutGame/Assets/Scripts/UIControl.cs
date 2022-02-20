@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;//切換場景用
 
 public class UIControl : MonoBehaviour
 {
-    ManagerControl MC;//抓取腳本
+    ManagerControl MC; BricksCreater BCr; BallControl BC;//抓取腳本
 
     public GameObject ExplainBG;//說明BG
     public Text SocreText;//分數文字
@@ -18,6 +19,12 @@ public class UIControl : MonoBehaviour
     void Start()
     {
         MC = GameObject.Find("ManagerControl").GetComponent<ManagerControl>();//抓取腳本
+        BCr = GameObject.Find("BricksCreater").GetComponent<BricksCreater>();
+        BC = GameObject.Find("Ball").GetComponent<BallControl>();
+
+        //初始化
+        ExplainBG.SetActive(true);
+        EndBG.SetActive(false);
     }
 
     // Update is called once per frame
@@ -47,6 +54,15 @@ public class UIControl : MonoBehaviour
         EndBG.SetActive(true);
 
         Time.timeScale = 0;
+    }
+
+    /// <summary>
+    /// 再玩一次-按鍵
+    /// </summary>
+    public void ResetGame()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);//切換場景
     }
 
 }

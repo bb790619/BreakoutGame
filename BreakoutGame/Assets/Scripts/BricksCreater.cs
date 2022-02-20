@@ -12,7 +12,7 @@ public class BricksCreater : MonoBehaviour
     [Header("磚塊Y的數量")] public int Y_Num;
     [Header("磚塊Y的間隔")] public float Y_Interval;
 
-    int SerialNum = 0;//產生磚塊的流水號
+   int SerialNum = 0;//產生磚塊的流水號
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +29,7 @@ public class BricksCreater : MonoBehaviour
     /// <summary>
     /// 產生磚塊
     /// </summary>
-    void MakeBricks()
+    public void MakeBricks()
     {
         for (int i = 0; i < X_Num; i++)
             for (int j = 0; j < Y_Num; j++)
@@ -44,6 +44,18 @@ public class BricksCreater : MonoBehaviour
 
             }
 
+
+    }
+
+    /// <summary>
+    /// 刪除剩下的磚塊
+    /// </summary>
+    public void ClearBricks()
+    {
+        for (int i = 0; i < this.transform.childCount; i++)
+        {
+            Destroy(this.transform.GetChild(i).gameObject);
+        }
 
     }
 

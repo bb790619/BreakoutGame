@@ -6,7 +6,7 @@ public class ManagerControl : MonoBehaviour
 {
     UIControl UC; BricksCreater BCr; BallControl BC;//抓取腳本
 
-    public float Timer = 60;//遊戲時間
+    [Header("遊戲時間")]public float Timer = 60;//遊戲時間
     public float NowTime;//目前時間
     public float Socre;
     public bool GameState = false;//True才可以開始玩遊戲
@@ -33,9 +33,9 @@ public class ManagerControl : MonoBehaviour
             NowTime -= Time.deltaTime;
 
 
-        //遊戲結束(磚塊全消失 或者 求掉下去)
-        if (Socre == BCr.X_Num * BCr.Y_Num * 10 || BC.BallDown==true)  {
-            Invoke("DelayGameEnd", 1f);
+        //遊戲結束(磚塊全消失 或者 球掉下去 或者時間為0)
+        if (Socre == BCr.X_Num * BCr.Y_Num * 10 || BC.BallDown==true || NowTime<=0)  {
+            Invoke("DelayGameEnd", 0.1f);
         }
     }
 
